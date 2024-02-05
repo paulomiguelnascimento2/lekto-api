@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "a7de2743-908b-44d6-b788-804cb7b01000",
+		"name": "lekto - desafio-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10877137",
+		"_collection_link": "https://restless-escape-71677.postman.co/workspace/OpenBanking~0d39e8d7-f7e3-4760-8c85-c08f26c587d3/collection/10877137-a7de2743-908b-44d6-b788-804cb7b01000?action=share&source=collection_link&creator=10877137"
+	},
+	"item": [
+		{
+			"name": "get-entries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// implementacao do comando pra verificar no console",
+							"if (pm.response.headers.get(\"Content-Type\") === \"application/json\") {",
+							"    try {",
+							"        var responseBody = pm.response.json();",
+							"        if (responseBody.entries) {",
+							"            // Filtra os objetos com a propriedade \"Category\" igual a \"Authentication & Authorization\"",
+							"            var filteredObjects = responseBody.entries.filter(function(entry) {",
+							"                return entry.Category === \"Authentication & Authorization\";",
+							"            });",
+							"",
+							"            // Imprime a contagem de objetos encontrados no console",
+							"            console.log(\"Número de objetos encontrados:\", filteredObjects.length);",
+							"",
+							"            console.log(\"Objetos encontrados:\", filteredObjects);",
+							"",
+							"            //Caso o contrate mude e não exibe no console exibe nesse else",
+							"        } else {",
+							"            console.log(\"A propriedade 'entries' não existe na resposta JSON.\");",
+							"        }",
+							"    } catch (error) {",
+							"        console.log(\"Erro ao analisar a resposta JSON:\", error.message);",
+							"    }",
+							"",
+							"    // Verifica se o status code é igual a 200",
+							"    pm.test(\"Status code is 200\", function () {",
+							"        pm.response.to.have.status(200);",
+							"    });",
+							"} else {",
+							"    console.log(\"A resposta não é do tipo JSON.\");",
+							"    pm.test(\"A resposta deve ser do tipo JSON\", function () {",
+							"        pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"    });",
+							"}",
+							"// resposta completa só pra verficar novamente",
+							"console.log(\"Resposta completa:\", pm.response.text());",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.publicapis.org/entries",
+					"protocol": "https",
+					"host": [
+						"api",
+						"publicapis",
+						"org"
+					],
+					"path": [
+						"entries"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
