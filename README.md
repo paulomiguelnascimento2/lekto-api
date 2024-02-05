@@ -8,7 +8,7 @@ Acessar a aba de tests do postman e verificar o script criado
 
 ## Como executar os testes
 
-Ter em sua maquina o postman instalado(https://www.postman.com/downloads/), importar o arquivo json e acionar o botão send
+Ter em sua maquina o postman instalado (https://www.postman.com/downloads/), importar o arquivo json e acionar o botão send
 
 ## Conferindo o resultado do teste
 
